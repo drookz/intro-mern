@@ -1,8 +1,10 @@
-const mongoose = require('mongooose')
+const mongoose = require('mongoose')
+
+mongoose.connection.on('open', () => console.log('MongoDB connected'))
 
 async  function connectDb ({ host, port, dbName }) {
     const uri = `mongodb://${host}:${port}/${dbName}`
-    mongoose.connect(uri, { useNewUrlParser: true})
+    await mongoose.connect(uri, { useNewUrlParser: true})
 }
 
-module.exports = connectDB
+module.exports = connectDb
